@@ -1,7 +1,10 @@
+import 'style/main.css';
+import 'style/markdown.css';
+
 import Vue from 'vue';
 import marked from 'marked';
 import _ from 'lodash';
-import 'style/main.css';
+import highlight from 'highlight.js';
 
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -12,6 +15,9 @@ marked.setOptions({
   sanitize: false,
   smartLists: true,
   smartypants: false,
+  highlight: function (code) {
+    return highlight.highlightAuto(code).value;
+  },
 });
 
 new Vue({
