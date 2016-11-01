@@ -3,6 +3,17 @@ import marked from 'marked';
 import _ from 'lodash';
 import 'style/main.css';
 
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: false,
+  smartLists: true,
+  smartypants: false,
+});
+
 new Vue({
   el: '#editor',
   data: {
@@ -10,7 +21,7 @@ new Vue({
   },
   computed: {
     compiledMarkdown: function () {
-      return marked(this.input, { sanitize: true });
+      return marked(this.input);
     },
   },
   methods: {
