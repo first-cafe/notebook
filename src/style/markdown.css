@@ -1,4 +1,4 @@
-pre {
+.makrdown pre {
   padding: 16px;
   overflow: auto;
   font-size: 85%;
@@ -7,7 +7,7 @@ pre {
   border-radius: 3px;
 }
 
-code {
+.markdown code {
   display: inline;
   max-width: auto;
   padding: 0;
@@ -19,7 +19,7 @@ code {
   border: 0;
 }
 
-table {
+.markdown table {
   font-size: 11px;
   color: #333333;
   border-width: 1px;
@@ -27,7 +27,7 @@ table {
   border-collapse: collapse;
 }
 
-table th {
+.markdown table th {
   border-width: 1px;
   padding: 8px;
   border-style: solid;
@@ -35,11 +35,10 @@ table th {
   background-color: #dedede;
 }
 
-table td {
+.markdown table td {
   border-width: 1px;
   padding: 8px;
   border-style: solid;
   border-color: #666666;
   background-color: #ffffff;
 }
-
