@@ -36,3 +36,15 @@ new Vue({
     }, 300),
   },
 });
+
+new Vue({
+  el: '#menu',
+  data: {
+    items: [
+      { text: '新建', url: '#' },
+      { text: '保存', url: '#' },
+      { text: '首页', url: '#' },
+      { text: '列表', url: '#' },
+    ],
+  },
+});
