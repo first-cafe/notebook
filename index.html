@@ -5,14 +5,7 @@
   <title>notebook</title>
 </head>
 <body>
-  <div id="menu">
-    <ul>
-      <li v-for="(item, index) in items">
-        <span v-if="index!==0">|</span>
-        <a :href="item.url">{{ item.text }}</a>
-      </li>
-    </ul>
-  </div>
+  <div id="menu"></div>
   <div id="sidebar"></div>
   <div id="editor"></div>
   <script src="dist/bundle.js"></script>
