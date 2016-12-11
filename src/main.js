@@ -1,5 +1,4 @@
 import 'style/main.css';
-import 'style/markdown.css';
 
 import Vue from 'vue';
 import Editor from './components/Editor.vue';

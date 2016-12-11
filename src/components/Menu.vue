@@ -8,6 +8,7 @@
 </ul>
 </div>
 </template>
+
 <script>
 export default {
     name: 'menu',
@@ -23,4 +24,26 @@ export default {
     }
 };
 </script>
-<style></style>
+
+<style>
+#menu {
+  color: #fff;
+  background: #222;
+}
+
+#menu ul {
+  padding-left: 10px;
+  margin: 0px;
+}
+
+#menu ul li {
+  display: inline-block;
+  padding: 3px;
+}
+
+#menu a { color: #fff; text-decoration:none; }
+#menu a:link { color:#fff; }
+#menu a:visited { color:#fff; }
+#menu a:hover { color:#fff; text-decoration:none; }
+#menu a:active { color: #fff; }
+</style>
