@@ -5,9 +5,11 @@
   <title>notebook</title>
 </head>
 <body>
-  <div id="menu"></div>
-  <div id="sidebar"></div>
-  <div id="editor"></div>
+  <div id="app">
+    <div id="menu"></div>
+    <div id="sidebar"></div>
+    <router-view></router-view>
+  </div>
   <script src="dist/bundle.js"></script>
 </body>
 </html>

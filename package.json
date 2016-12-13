@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/first-cafe/notebook#readme",
   "dependencies": {
-    "vue": "^2.0.3"
+    "vue": "^2.0.3",
+    "vue-router": "^2.1.1"
   },
   "devDependencies": {
     "babel-core": "^6.18.0",
