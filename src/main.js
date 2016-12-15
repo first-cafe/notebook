@@ -3,12 +3,14 @@ import 'style/main.css';
 import Vue from 'vue';
 import Editor from './components/Editor.vue';
 import Menu from './components/Menu.vue';
+import List from './components/List.vue';
 import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
 const routes = [
     { path: '/editor', component: Editor },
+    { path: '/list', component: List },
 ];
 
 const router = new VueRouter({
