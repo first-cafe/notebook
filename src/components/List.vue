@@ -1,10 +1,9 @@
 <template>
  <div id="list">
-   <ul>
-     <li v-for="(item, index) in items">
-       <a :href="item.url">{{ item.text }}</a>
-     </li>
-   </ul>
+   <div v-for="(item, index) in items">
+     <a :href="item.url">{{ item.text }}</a>
+     <span class="datetime">{{item.datetime}}</span>
+   </div>
   </div>
 </template>
 
@@ -14,9 +13,10 @@ export default {
     data() {
         return {
             items: [
-                { text: '第一篇文章', url: '#'},
-                { text: '第二篇文章', url: '#'},
-                { text: '第三篇文章', url: '#'},
+                { text: '第一篇文章', url: '#', datetime: '2016-12-10 10:11:30'},
+                { text: '第二篇文章', url: '#', datetime: '2016-12-10 10:11:30'},
+                { text: '第三篇文章', url: '#', datetime: '2016-12-10 10:11:30'},
+                { text: '第四篇文章', url: '#', datetime: '2016-12-10 10:11:30'},
             ]
         }
     }
@@ -24,4 +24,35 @@ export default {
 </script>
 
 <style>
+a:link {
+    color:#000000;
+    text-decoration:none;
+}
+a:visited {
+    color:#000000;
+    text-decoration:none;
+}
+a:hover {
+    color:#000000;
+    text-decoration:none;
+}
+a:active {
+    color:#000000;
+    text-decoration:none;
+}
+
+#list {
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 20px;
+}
+
+#list .datetime {
+    float: right;
+}
+
+#list>div:nth-child(2n+1) {
+    background-color: #eee;
+}
+
 </style>
