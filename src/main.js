@@ -12,7 +12,7 @@ Vue.use(VueRouter);
 const routes = [
     { path: '/editor', component: Editor },
     { path: '/list', component: List },
-    { path: '/article/:title', component: Article }
+    { path: '/article/:title', component: Article },
 ];
 
 const router = new VueRouter({
