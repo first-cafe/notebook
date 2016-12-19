@@ -13,7 +13,7 @@ export default {
     data() {
         return {
             items: [
-                { text: '第一篇文章', url: '#', datetime: '2016-12-10 10:11:30'},
+                { text: '第一篇文章', url: '#/article/1.md', datetime: '2016-12-10 10:11:30'},
                 { text: '第二篇文章', url: '#', datetime: '2016-12-10 10:11:30'},
                 { text: '第三篇文章', url: '#', datetime: '2016-12-10 10:11:30'},
                 { text: '第四篇文章', url: '#', datetime: '2016-12-10 10:11:30'},
