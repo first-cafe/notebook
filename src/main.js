@@ -4,12 +4,13 @@ import Vue from 'vue';
 import Menu from './components/Menu.vue';
 import VueRouter from 'vue-router';
 import router from './router';
+import App from './App.vue';
+
+const app = new Vue(
+  Object.assign({router}, App)
+).$mount('#app');
 
 new Vue({
   el: '#menu',
   render: h => h(Menu),
 });
-
-const app = new Vue({
-  router,
-}).$mount('#app');

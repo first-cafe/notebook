@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var HTMLPlugin = require('html-webpack-plugin');
 
 module.exports = {
   resolve: {
@@ -7,11 +8,17 @@ module.exports = {
     extensions: ['', '.js'],
     alias: { vue: 'vue/dist/vue.js' },
   },
-  entry: './src/main.js',
+  entry: {
+    app: './src/main.js',
+    vendor: [
+      'vue',
+      'vue-router',
+    ],
+  },
   output: {
     path: './dist',
-    publicPath: 'dist/',
-    filename: 'bundle.js',
+    publicPath: '',
+    filename: '[name].[chunkhash].js'
   },
   module: {
     loaders: [
@@ -20,4 +27,9 @@ module.exports = {
       { test: /\.vue/, exclude: /node_modules/, loader: 'vue-loader' },
     ],
   },
+  plugins: [
+    new HTMLPlugin({
+      template: 'src/index.template.html'
+    })
+  ],
 };
