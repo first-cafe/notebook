@@ -9,8 +9,3 @@ import App from './App.vue';
 const app = new Vue(
   Object.assign({router}, App)
 ).$mount('#app');
-
-new Vue({
-  el: '#menu',
-  render: h => h(Menu),
-});
