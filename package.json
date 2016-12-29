@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "build": "webpack --config webpack.config.prod.js",
-    "start": "webpack-dev-server --inline --config webpack.config.prod.js",
+    "start": "webpack --config webpack.config.prod.js && node server ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/first-cafe/notebook#readme",
   "dependencies": {
+    "express": "^4.14.0",
     "vue": "^2.0.3",
     "vue-router": "^2.1.1"
   },
@@ -33,6 +34,7 @@
     "marked": "^0.3.6",
     "style-loader": "^0.13.1",
     "vue-loader": "^9.7.0",
+    "vue-server-renderer": "^2.1.8",
     "vue-style-loader": "^1.0.0",
     "webpack": "^1.13.2"
   }
