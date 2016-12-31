@@ -15,10 +15,9 @@ export default {
     data() {
         return {
             items: [
-                { text: '新建', url: '#/editor' },
-                { text: '保存', url: '#' },
                 { text: '首页', url: '#' },
                 { text: '列表', url: '#/list' },
+                { text: '新建', url: '#/editor' },
             ],
         };
     }
