@@ -3,7 +3,7 @@
 <ul>
   <li v-for="(item, index) in items">
     <span v-if="index!==0">|</span>
-    <a :href="item.url">{{ item.text }}</a>
+    <a :href="item.url" v-on:click='updateMenu(item.name)'>{{ item.text }}</a>
   </li>
 </ul>
 </div>
@@ -15,12 +15,39 @@ export default {
     data() {
         return {
             items: [
-                { text: '首页', url: '#' },
-                { text: '列表', url: '#/list' },
-                { text: '新建', url: '#/editor' },
+                { name: 'title', text: '首页', url: '#' },
+                { name: 'list', text: '列表', url: '#/list' },
+                { name: 'new', text: '新建', url: '#/editor' },
             ],
         };
-    }
+    },
+    methods: {
+      updateMenu: function(name, event) {
+        let items;
+        if (name==='title') {
+          items = [
+            { name: 'title', text: '首页', url: '#' },
+            { name: 'list', text: '列表', url: '#/list' },
+            { name: 'new', text: '新建', url: '#/editor' },
+          ]
+        } else if (name==='list') {
+          items = [
+            { name: 'title', text: '首页', url: '#' },
+            { name: 'list', text: '列表', url: '#/list' },
+            { name: 'new', text: '新建', url: '#/editor' },
+          ]
+        } else if (name==='new') {
+          items = [
+            { name: 'title', text: '首页', url: '#' },
+            { name: 'list', text: '列表', url: '#/list' },
+            { name: 'new', text: '新建', url: '#/editor' },
+            { name: 'save', text: '保存', url: '#' },
+          ]
+        }
+
+        this.items = items;
+      }
+    },
 };
 </script>
 
