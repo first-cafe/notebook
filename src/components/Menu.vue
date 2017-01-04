@@ -5,6 +5,9 @@
     <span v-if="index!==0">|</span>
     <a :href="item.url" v-on:click='updateMenu(item.name)'>{{ item.text }}</a>
   </li>
+  <li v-if="showEditMenu">
+    <a href="" >保存</a>
+  </li>
 </ul>
 </div>
 </template>
@@ -19,6 +22,7 @@ export default {
                 { name: 'list', text: '列表', url: '#/list' },
                 { name: 'new', text: '新建', url: '#/editor' },
             ],
+            showEditMenu: false,
         };
     },
     methods: {
@@ -29,20 +33,22 @@ export default {
             { name: 'title', text: '首页', url: '#' },
             { name: 'list', text: '列表', url: '#/list' },
             { name: 'new', text: '新建', url: '#/editor' },
-          ]
+          ];
+          this.showEditMenu = false;
         } else if (name==='list') {
           items = [
             { name: 'title', text: '首页', url: '#' },
             { name: 'list', text: '列表', url: '#/list' },
             { name: 'new', text: '新建', url: '#/editor' },
-          ]
+          ];
+          this.showEditMenu = false;
         } else if (name==='new') {
           items = [
             { name: 'title', text: '首页', url: '#' },
             { name: 'list', text: '列表', url: '#/list' },
             { name: 'new', text: '新建', url: '#/editor' },
-            { name: 'save', text: '保存', url: '#' },
-          ]
+          ];
+          this.showEditMenu = true;
         }
 
         this.items = items;
