@@ -6,7 +6,7 @@
     <a :href="item.url" v-on:click='updateMenu(item.name)'>{{ item.text }}</a>
   </li>
   <li v-if="showEditMenu">
-    <a href="" >保存</a>
+    <a v-on:click='save'>保存</a>
   </li>
 </ul>
 </div>
@@ -26,6 +26,9 @@ export default {
         };
     },
     methods: {
+      save: function() {
+        console.log('save post');
+      },
       updateMenu: function(name, event) {
         let items;
         if (name==='title') {

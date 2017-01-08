@@ -26,19 +26,17 @@ marked.setOptions({
 
 export default {
     name: 'edit',
-    data() {
-        return {
-            input: '# hello'
-        }
-    },
     computed: {
+        input: function() {
+          return this.$store.state.input;
+        },
         compiledMarkdown: function () {
-            return marked(this.input);
+          return marked(this.$store.state.input);
         },
     },
     methods: {
         update: _.debounce(function (e) {
-            this.input = e.target.value;
+            this.$store.commit('SAVE', e.target.value);
         }, 300),
     },
 };
