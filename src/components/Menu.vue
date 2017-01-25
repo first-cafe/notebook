@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import localForage from "localforage";
+
 export default {
     name: 'menu',
     data() {
@@ -27,7 +29,13 @@ export default {
     },
     methods: {
       save: function() {
-        console.log('save post');
+        let article = {
+          'title': 'first article',
+          'content': this.$store.state.input,
+        }
+        localForage.setItem('fist article', article, function(error) {
+          console.log('save article');
+        })
       },
       updateMenu: function(name, event) {
         let items;
