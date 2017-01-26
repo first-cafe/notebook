@@ -26,6 +26,7 @@ module.exports = {
       { test: /\.css$/, exclude: /node_modules/, loader: 'style-loader!css-loader' },
       { test: /\.vue/, exclude: /node_modules/, loader: 'vue-loader' },
     ],
+    noParse: [new RegExp('node_modules/localforage/dist/localforage.js')]
   },
   plugins: [
     new HTMLPlugin({
