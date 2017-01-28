@@ -11,5 +11,5 @@ import store from './store';
 sync(store, router);
 
 const app = new Vue(
-  Object.assign({router, store}, App)
+  Object.assign({ router, store }, App)
 ).$mount('#app');
