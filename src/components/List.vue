@@ -1,8 +1,8 @@
 <template>
  <div id="list">
    <div v-for="(item, index) in items">
-     <a :href="item.url">{{ item.text }}</a>
-     <span class="datetime">{{item.datetime}}</span>
+     <a :href="item.url">{{ item.title }}</a>
+     <span class="datetime">{{item.created_at}}</span>
    </div>
   </div>
 </template>
@@ -10,9 +10,9 @@
 <script>
 export default {
     name : 'list',
-    data() {
-        return {
-          items: this.$store.state.article_title_list
+    computed: {
+        items: function() {
+          return this.$store.state.article_list
         }
     }
 }

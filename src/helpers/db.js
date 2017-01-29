@@ -1,5 +1,6 @@
 import localForage from 'localforage';
 import Q from 'Q';
+import _ from 'underscore';
 
 let db = {
   dbs: {},
@@ -25,7 +26,59 @@ let db = {
         defer.reject('not found');
       }
 
-      return defer.promise;
+      return defer.resolve(data);
+    });
+
+    return defer.promise;
+  },
+
+  findAll: function (data) {
+    let defer = Q.defer();
+    let self = this;
+
+    this.getDb(data.options).keys(function (err, keys) {
+      if (!keys || !keys.length) {
+        return defer.resolve([]);
+      }
+
+      console.log(keys);
+
+      return self.findByKeys(keys, data)
+      .then(function (res) {
+        defer.resolve(res);
+      })
+      .fail(function (e) {
+        defer.reject(e);
+      });
+    });
+
+    return defer.promise;
+  },
+
+  findByKeys: function (keys, data) {
+    let promises = [];
+    let self = this;
+    let models = [];
+    _.each(keys, function (key) {
+      promises.push(
+        self.find({ id: key, options: data.options })
+        .then(function (item) {
+          if (item &&
+              (!data.options.conditions || _.isMatch(item, data.options.conditions))) {
+            models.push(item);
+            return item;
+          }
+
+          return;
+        })
+      );
+    });
+
+    return Q.all(promises)
+    .then(function () {
+      return models;
     });
   },
 };
+
+export default db;
