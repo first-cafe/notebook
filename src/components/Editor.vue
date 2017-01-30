@@ -36,7 +36,7 @@ export default {
     },
     methods: {
         update: _.debounce(function (e) {
-            this.$store.dispatch('save', e.target.value);
+            this.$store.dispatch('update', e.target.value);
         }, 300),
     },
 };

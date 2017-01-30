@@ -12,7 +12,7 @@ const store = new Vuex.Store({
     ],
   },
   mutations: {
-    SAVE(state, input) {
+    UPDATE(state, input) {
       state.input = input;
     },
 
@@ -21,8 +21,8 @@ const store = new Vuex.Store({
     },
   },
   actions: {
-    save(context, input) {
-      context.commit('SAVE', input);
+    update(context, input) {
+      context.commit('UPDATE', input);
     },
 
     init(context, data) {
