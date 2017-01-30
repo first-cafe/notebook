@@ -13,8 +13,8 @@ import localforage from 'localforage';
 sync(store, router);
 
 let options = {
-  profile: 'notes-db',
-  storeName: 'notes-db_1',
+  profile: 'first-cafe',
+  storeName: 'notebook',
 };
 
 db.findAll({ options: options }).then((data) => {

@@ -13,7 +13,13 @@
 </template>
 
 <script>
-import localForage from "localforage";
+import db from '../helpers/db';
+import uuidV1 from 'uuid/v1'
+
+let options = {
+  profile: 'first-cafe',
+  storeName: 'notebook',
+};
 
 export default {
     name: 'menu',
@@ -29,13 +35,12 @@ export default {
     },
     methods: {
       save: function() {
-        let article = {
-          'title': 'first article',
-          'content': this.$store.state.input,
+        let data = {
+          title: 'first article',
+          content: this.$store.state.input,
+          url: '#'
         }
-        localForage.setItem('fist article', article, function(error) {
-          console.log('save article');
-        })
+        db.save({ options: options, data: data, id: uuidV1()})
       },
       updateMenu: function(name, event) {
         let items;

@@ -41,8 +41,6 @@ let db = {
         return defer.resolve([]);
       }
 
-      console.log(keys);
-
       return self.findByKeys(keys, data)
       .then(function (res) {
         defer.resolve(res);
@@ -78,6 +76,25 @@ let db = {
     .then(function () {
       return models;
     });
+  },
+
+  save: function (data) {
+    let defer = Q.defer();
+    let sData = data.data;
+
+    if (sData.encryptedData) {
+      sData = _.omit(sData, data.options.encryptKeys);
+    }
+
+    this.getDb(data.options).setItem(data.id, sData, function (err, val) {
+      if (err) {
+        return defer.reject(err);
+      }
+
+      return defer.resolve(val);
+    });
+
+    return defer.promise;
   },
 };
 
