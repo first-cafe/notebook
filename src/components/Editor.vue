@@ -1,9 +1,9 @@
 <template>
   <div id="editor">
     <div class="article_info">
-      <input type="" placeholder="[标题],[分类],[标签],[标签]...">
+      <input :value="article_info" @input="updateArticleInfo "placeholder="[标题],[分类],[标签],[标签]...">
     </div>
-    <textarea class="markdown-input" :value="input" @input="update"></textarea>
+    <textarea class="markdown-input" :value="content" @input="updateContent"></textarea>
     <div class="markdown-show" v-html="compiledMarkdown"></div>
   </div>
 </template>
@@ -28,20 +28,41 @@ marked.setOptions({
 });
 
 export default {
-    name: 'edit',
-    computed: {
-        input: function() {
-          return this.$store.state.input;
-        },
-        compiledMarkdown: function () {
-          return marked(this.$store.state.input);
-        },
+  name: 'edit',
+  computed: {
+    content: function() {
+      return this.$store.state.article.content;
     },
-    methods: {
-        update: _.debounce(function (e) {
-            this.$store.dispatch('update', e.target.value);
-        }, 300),
+    article_info: function() {
+      let data = _.clone(this.$store.state.article)
+      let article_info = data['title']
+        if(data['category']){
+          article_info += ',' + data['category']
+        }
+        if(data['label'] && data['label'].length!=0){
+          article_info += ',' + data['label'].join(',')
+        }
+        return article_info
+      },
+    compiledMarkdown: function () {
+      return marked(this.$store.state.article.content);
     },
+  },
+  methods: {
+    updateContent: _.debounce(function (e) {
+      let data = _.clone(this.$store.state.article);
+      data['content'] = e.target.value;
+        this.$store.dispatch('update', data);
+    }, 300),
+    updateArticleInfo: _.debounce(function(e) {
+      let data = _.clone(this.$store.state.article)
+      let article_infos = e.target.value.split(',')
+      data['title'] = article_infos[0]
+      data['category'] = article_infos[1]
+      data['label'] = article_infos.slice(2)
+      this.$store.dispatch('update', data);
+    }, 300),
+  },
 };
 
 </script>

@@ -13,8 +13,10 @@
 </template>
 
 <script>
-import db from '../helpers/db';
+import _ from 'lodash';
 import uuidV1 from 'uuid/v1'
+
+import db from '../helpers/db';
 
 let options = {
   profile: 'first-cafe',
@@ -22,54 +24,52 @@ let options = {
 };
 
 export default {
-    name: 'menu',
-    data() {
-        return {
-            items: [
-                { name: 'title', text: '首页', url: '#' },
-                { name: 'list', text: '列表', url: '#/list' },
-                { name: 'new', text: '新建', url: '#/editor' },
-            ],
-            showEditMenu: false,
-        };
+  name: 'menu',
+  data() {
+    return {
+      items: [
+        { name: 'title', text: '首页', url: '#' },
+        { name: 'list', text: '列表', url: '#/list' },
+        { name: 'new', text: '新建', url: '#/editor' },
+      ],
+      showEditMenu: false,
+    };
+  },
+  methods: {
+    save: function() {
+      let id = uuidV1();
+      let data = _.clone(this.$store.state.article);
+      data['url'] = 'article/' + id;
+      db.save({ options: options, data: data, id: id});
     },
-    methods: {
-      save: function() {
-        let data = {
-          title: 'first article',
-          content: this.$store.state.input,
-          url: '#'
-        }
-        db.save({ options: options, data: data, id: uuidV1()})
-      },
-      updateMenu: function(name, event) {
-        let items;
-        if (name==='title') {
-          items = [
-            { name: 'title', text: '首页', url: '#' },
-            { name: 'list', text: '列表', url: '#/list' },
-            { name: 'new', text: '新建', url: '#/editor' },
-          ];
-          this.showEditMenu = false;
-        } else if (name==='list') {
-          items = [
-            { name: 'title', text: '首页', url: '#' },
-            { name: 'list', text: '列表', url: '#/list' },
-            { name: 'new', text: '新建', url: '#/editor' },
-          ];
-          this.showEditMenu = false;
-        } else if (name==='new') {
-          items = [
-            { name: 'title', text: '首页', url: '#' },
-            { name: 'list', text: '列表', url: '#/list' },
-            { name: 'new', text: '新建', url: '#/editor' },
-          ];
-          this.showEditMenu = true;
-        }
-
-        this.items = items;
+    updateMenu: function(name, event) {
+      let items;
+      if (name==='title') {
+        items = [
+          { name: 'title', text: '首页', url: '#' },
+          { name: 'list', text: '列表', url: '#/list' },
+          { name: 'new', text: '新建', url: '#/editor' },
+        ];
+        this.showEditMenu = false;
+      } else if (name==='list') {
+        items = [
+          { name: 'title', text: '首页', url: '#' },
+          { name: 'list', text: '列表', url: '#/list' },
+          { name: 'new', text: '新建', url: '#/editor' },
+        ];
+        this.showEditMenu = false;
+      } else if (name==='new') {
+        items = [
+          { name: 'title', text: '首页', url: '#' },
+          { name: 'list', text: '列表', url: '#/list' },
+          { name: 'new', text: '新建', url: '#/editor' },
+        ];
+        this.showEditMenu = true;
       }
-    },
+
+      this.items = items;
+    }
+  },
 };
 </script>
 

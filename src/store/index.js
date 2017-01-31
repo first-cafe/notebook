@@ -6,14 +6,19 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    input: '# hello',
+    article: {
+      content: '# hello',
+      title: 'Title',
+      category: 'test',
+      label: [],
+    },
     article_list: [
       { title: '第一篇文章', url: '#', content: '#hellow  test', created_at: new Date() },
     ],
   },
   mutations: {
-    UPDATE(state, input) {
-      state.input = input;
+    UPDATE(state, data) {
+      state.article = data;
     },
 
     INIT(state, data) {
@@ -21,8 +26,8 @@ const store = new Vuex.Store({
     },
   },
   actions: {
-    update(context, input) {
-      context.commit('UPDATE', input);
+    update(context, data) {
+      context.commit('UPDATE', data);
     },
 
     init(context, data) {
