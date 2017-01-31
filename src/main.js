@@ -19,10 +19,10 @@ let options = {
 
 db.findAll({ options: options }).then((data) => {
   store.dispatch('init', data);
+
+  const app = new Vue(
+    Object.assign({ router, store }, App)
+  ).$mount('#app');
 }).catch((err) => {
   console.error(err);
 });
-
-const app = new Vue(
-  Object.assign({ router, store }, App)
-).$mount('#app');

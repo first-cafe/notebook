@@ -12,9 +12,7 @@ const store = new Vuex.Store({
       category: 'test',
       label: [],
     },
-    article_list: [
-      { title: '第一篇文章', url: '#', content: '#hellow  test', created_at: new Date() },
-    ],
+    article_list: [],
   },
   mutations: {
     UPDATE(state, data) {

@@ -39,7 +39,8 @@ export default {
     save: function() {
       let id = uuidV1();
       let data = _.clone(this.$store.state.article);
-      data['url'] = 'article/' + id;
+      data['id'] = id
+      data['url'] = '/#/article/' + id;
       db.save({ options: options, data: data, id: id});
     },
     updateMenu: function(name, event) {

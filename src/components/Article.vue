@@ -1,6 +1,6 @@
 <template>
   <div id="article">
-     <h1>{{$route.params.title}}</h1>
+     <h1>{{title}}</h1>
     <div class="markdown" v-html="compiledMarkdown"></div>
   </div>
 </template>
@@ -27,13 +27,21 @@ marked.setOptions({
 export default {
     name: 'article',
     data() {
-        return {
-            input: '# hello'
+
+      let article;
+      this.$store.state.article_list.forEach((value) => {
+        if(value['id'] === this.$route.params.id) {
+          article = value
         }
+      })
+      return {
+          content: article['content'],
+          title: article['title']
+      }
     },
     computed: {
         compiledMarkdown: function () {
-            return marked(this.input);
+            return marked(this.content);
         },
     },
     methods: {
