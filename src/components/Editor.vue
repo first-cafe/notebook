@@ -1,7 +1,10 @@
 <template>
   <div id="editor">
-    <textarea :value="input" @input="update"></textarea>
-    <div class="markdown" v-html="compiledMarkdown"></div>
+    <div class="article_info">
+      <input type="" placeholder="[标题],[分类],[标签],[标签]...">
+    </div>
+    <textarea class="markdown-input" :value="input" @input="update"></textarea>
+    <div class="markdown-show" v-html="compiledMarkdown"></div>
   </div>
 </template>
 
@@ -44,7 +47,7 @@ export default {
 </script>
 
 <style>
-textarea, #editor div {
+#editor>.markdown-input, #editor>.markdown-show {
   display: inline-block;
   width: 49%;
   height: 100%;
@@ -52,7 +55,7 @@ textarea, #editor div {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 0 20px;
+  padding: 20px;
 }
 
 textarea {
@@ -66,9 +69,22 @@ textarea {
   padding: 20px;
 }
 
+.article_info {
+  display: block;
+  width: 100%;
+  height: 35px;
+}
+.article_info input {
+  padding: 0 12px;
+  font-size: 1.8em;
+  height: auto;
+  border-radius: 0;
+  border: none;
+  font-weight: 700;
+  width: 100%;
+}
 
 .makrdown pre {
-  padding: 16px;
   overflow: auto;
   font-size: 85%;
   line-height: 1.45;
