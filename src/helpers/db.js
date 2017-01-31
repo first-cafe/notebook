@@ -1,6 +1,6 @@
 import localForage from 'localforage';
 import Q from 'Q';
-import _ from 'underscore';
+import _ from 'lodash';
 
 let db = {
   dbs: {},
