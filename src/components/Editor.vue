@@ -1,7 +1,7 @@
 <template>
   <div id="editor">
     <div class="article_info">
-      <input :value="article_info" @input="updateArticleInfo "placeholder="[标题],[分类],[标签],[标签]...">
+      <input v-model="article_info" @input="updateArticleInfo "placeholder="[标题],[分类],[标签],[标签]...">
     </div>
     <textarea class="markdown-input" :value="content" @input="updateContent"></textarea>
     <div class="markdown-show" v-html="compiledMarkdown"></div>
@@ -29,21 +29,24 @@ marked.setOptions({
 
 export default {
   name: 'edit',
+  data() {
+    let data = _.clone(this.$store.state.article)
+    let article_info = data['title'] + ','
+    if(data['category']){
+      article_info += data['category'] + ','
+    }
+    if(data['label'] && data['label'].length!=0){
+      article_info += data['label'].join(',')
+    }
+
+    return {
+      article_info: article_info
+    }
+  },
   computed: {
     content: function() {
       return this.$store.state.article.content;
     },
-    article_info: function() {
-      let data = _.clone(this.$store.state.article)
-      let article_info = data['title']
-        if(data['category']){
-          article_info += ',' + data['category']
-        }
-        if(data['label'] && data['label'].length!=0){
-          article_info += ',' + data['label'].join(',')
-        }
-        return article_info
-      },
     compiledMarkdown: function () {
       return marked(this.$store.state.article.content);
     },
@@ -54,14 +57,19 @@ export default {
       data['content'] = e.target.value;
         this.$store.dispatch('update', data);
     }, 300),
-    updateArticleInfo: _.debounce(function(e) {
-      let data = _.clone(this.$store.state.article)
-      let article_infos = e.target.value.split(',')
+    updateArticleInfo: function(e) {
+      let data = _.clone(this.$store.state.article);
+      let article_infos = e.target.value.split(',');
+      if (article_infos[article_infos.length-1] == '') {
+        article_infos.pop()
+      }
+
       data['title'] = article_infos[0]
       data['category'] = article_infos[1]
       data['label'] = article_infos.slice(2)
+
       this.$store.dispatch('update', data);
-    }, 300),
+    },
   },
 };
 
