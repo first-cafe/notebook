@@ -3,7 +3,7 @@
 <ul>
   <li v-for="(item, index) in items">
     <span v-if="index!==0">|</span>
-    <a :href="item.url" v-on:click='updateMenu(item.name)'>{{ item.text }}</a>
+    <a :href="item.url">{{ item.text }}</a>
   </li>
   <li v-if="showEditMenu">
     <a v-on:click='save'>保存</a>
@@ -25,51 +25,22 @@ let options = {
 
 export default {
   name: 'menu',
-  data() {
-    return {
-      items: [
-        { name: 'title', text: '首页', url: '#' },
-        { name: 'list', text: '列表', url: '#/list' },
-        { name: 'new', text: '新建', url: '#/editor' },
-      ],
-      showEditMenu: false,
-    };
+  computed: {
+    items: function() {
+      return this.$store.state.menu;
+    },
+    showEditMenu: function() {
+      return this.$store.state.showEditMenu;
+    }
   },
   methods: {
     save: function() {
-      let id = uuidV1();
       let data = _.clone(this.$store.state.article);
-      data['id'] = id
-      data['url'] = '/#/article/' + id;
-      db.save({ options: options, data: data, id: id});
-    },
-    updateMenu: function(name, event) {
-      let items;
-      if (name==='title') {
-        items = [
-          { name: 'title', text: '首页', url: '#' },
-          { name: 'list', text: '列表', url: '#/list' },
-          { name: 'new', text: '新建', url: '#/editor' },
-        ];
-        this.showEditMenu = false;
-      } else if (name==='list') {
-        items = [
-          { name: 'title', text: '首页', url: '#' },
-          { name: 'list', text: '列表', url: '#/list' },
-          { name: 'new', text: '新建', url: '#/editor' },
-        ];
-        this.showEditMenu = false;
-      } else if (name==='new') {
-        items = [
-          { name: 'title', text: '首页', url: '#' },
-          { name: 'list', text: '列表', url: '#/list' },
-          { name: 'new', text: '新建', url: '#/editor' },
-        ];
-        this.showEditMenu = true;
+      if (!data.id) {
+        data.id = uuidV1()
       }
-
-      this.items = items;
-    }
+      db.save({ options: options, data: data, id: data.id});
+    },
   },
 };
 </script>

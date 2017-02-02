@@ -25,30 +25,65 @@ marked.setOptions({
 });
 
 export default {
-    name: 'article',
-    data() {
-
-      let article;
+  name: 'article',
+  data() {
+    return {
+      content: this.$store.state.article['content'],
+      title: this.$store.state.article['title']
+    }
+  },
+  computed: {
+    compiledMarkdown: function () {
+      return marked(this.content);
+    },
+  },
+  methods: {
+    update: _.debounce(function (e) {
+      this.input = e.target.value;
+    }, 300),
+  },
+  beforeCreate: function() {
+    let article;
+    if (this.$route.params.id) {
       this.$store.state.article_list.forEach((value) => {
-        if(value['id'] === this.$route.params.id) {
-          article = value
+        if (value.id === this.$route.params.id) {
+          article = value;
         }
-      })
-      return {
-          content: article['content'],
-          title: article['title']
+      });
+      this.$store.dispatch('update',  article);
+    } else {
+      article = {
+        content: '# hello',
+        title: 'Title',
+        category: 'test',
+        label: [],
+      };
+      this.$store.dispatch('update',  article);
+    }
+  },
+  watch: {
+    '$route' (to, from) {
+      let article;
+      if (to.params.id) {
+        this.$store.state.article_list.forEach((value) => {
+          if (value.id === this.$route.params.id) {
+            article = value;
+          }
+        });
+        this.$store.dispatch('update',  article);
+      } else {
+        article = {
+          content: '# hello',
+          title: 'Title',
+          category: 'test',
+          label: [],
+        };
+        this.$store.dispatch('update',  article);
       }
-    },
-    computed: {
-        compiledMarkdown: function () {
-            return marked(this.content);
-        },
-    },
-    methods: {
-        update: _.debounce(function (e) {
-            this.input = e.target.value;
-        }, 300),
-    },
+      this.$data.content = this.$store.state.article['content'];
+      this.$data.title = this.$store.state.article['title'];
+    }
+  }
 };
 
 </script>

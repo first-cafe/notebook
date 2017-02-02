@@ -9,7 +9,8 @@ import Article from '../components/Article.vue';
 
 export default new Router({
   routes: [
-    { path: '/editor', component: Editor },
+    { path: '/edit', component: Editor },
+    { path: '/edit/:id', component: Editor },
     { path: '/list', component: List },
     { path: '/article/:id', component: Article },
   ],

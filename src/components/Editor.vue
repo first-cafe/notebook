@@ -30,17 +30,8 @@ marked.setOptions({
 export default {
   name: 'edit',
   data() {
-    let data = _.clone(this.$store.state.article)
-    let article_info = data['title'] + ','
-    if(data['category']){
-      article_info += data['category'] + ','
-    }
-    if(data['label'] && data['label'].length!=0){
-      article_info += data['label'].join(',')
-    }
-
     return {
-      article_info: article_info
+      article_info: this.getArticleInfo()
     }
   },
   computed: {
@@ -57,6 +48,18 @@ export default {
       data['content'] = e.target.value;
         this.$store.dispatch('update', data);
     }, 300),
+    getArticleInfo: function() {
+      let data = _.clone(this.$store.state.article)
+      let article_info = data['title'] + ','
+      if(data['category']){
+        article_info += data['category'] + ','
+      }
+      if(data['label'] && data['label'].length!=0){
+        article_info += data['label'].join(',')
+      }
+
+      return article_info;
+    },
     updateArticleInfo: function(e) {
       let data = _.clone(this.$store.state.article);
       let article_infos = e.target.value.split(',');
@@ -71,6 +74,47 @@ export default {
       this.$store.dispatch('update', data);
     },
   },
+  beforeCreate: function() {
+    let article;
+    if (this.$route.params.id) {
+      this.$store.state.article_list.forEach((value) => {
+        if (value.id === this.$route.params.id) {
+          article = value;
+        }
+      });
+      this.$store.dispatch('update',  article);
+    } else {
+      article = {
+        content: '# hello',
+        title: 'Title',
+        category: 'test',
+        label: [],
+      };
+      this.$store.dispatch('update',  article);
+    }
+  },
+  watch: {
+    '$route' (to, from) {
+      let article;
+      if (to.params.id) {
+        this.$store.state.article_list.forEach((value) => {
+          if (value.id === this.$route.params.id) {
+            article = value;
+          }
+        });
+        this.$store.dispatch('update',  article);
+      } else {
+        article = {
+          content: '# hello',
+          title: 'Title',
+          category: 'test',
+          label: [],
+        };
+        this.$store.dispatch('update',  article);
+      }
+      this.$data.article_info = this.getArticleInfo()
+    }
+  }
 };
 
 </script>
