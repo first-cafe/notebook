@@ -17,30 +17,6 @@ let options = {
   storeName: 'notebook',
 };
 
-let watch = {
-  $route(to, from) {
-    console.log(to, from);
-    let article;
-    if (to.params.id) {
-      this.$store.state.article_list.forEach((value) => {
-        if (value.id === this.$route.params.id) {
-          article = value;
-        }
-      });
-      this.$store.dispatch('update',  article);
-    } else {
-      article = {
-        content: '# hello',
-        title: 'Title',
-        category: 'test',
-        label: [],
-      };
-      this.$store.dispatch('update',  article);
-    }
-
-  },
-};
-
 db.findAll({ options: options }).then((data) => {
   store.dispatch('init', data);
 

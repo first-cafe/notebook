@@ -13,12 +13,6 @@ const store = new Vuex.Store({
       label: [],
     },
     article_list: [],
-    menu: [
-      { name: 'title', text: '首页', url: '#' },
-      { name: 'list', text: '列表', url: '#/list' },
-      { name: 'new', text: '新建', url: '#/edit' },
-    ],
-    showEditMenu: false,
   },
   mutations: {
     UPDATE(state, data) {

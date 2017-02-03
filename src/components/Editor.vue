@@ -1,10 +1,13 @@
 <template>
-  <div id="editor">
-    <div class="article_info">
-      <input v-model="article_info" @input="updateArticleInfo "placeholder="[标题],[分类],[标签],[标签]...">
+  <div id="editor_page">
+    <my-menu :items="menu" :show-edit-menu="showEditMenu"></my-menu>
+    <div id="editor">
+      <div class="article_info">
+        <input v-model="article_info" @input="updateArticleInfo "placeholder="[标题],[分类],[标签],[标签]...">
+      </div>
+      <textarea class="markdown-input" :value="content" @input="updateContent"></textarea>
+      <div class="markdown-show" v-html="compiledMarkdown"></div>
     </div>
-    <textarea class="markdown-input" :value="content" @input="updateContent"></textarea>
-    <div class="markdown-show" v-html="compiledMarkdown"></div>
   </div>
 </template>
 
@@ -12,6 +15,8 @@
 import marked from 'marked';
 import _ from 'lodash';
 import highlight from 'highlight.js';
+
+import Menu from './Menu.vue';
 
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -31,7 +36,13 @@ export default {
   name: 'edit',
   data() {
     return {
-      article_info: this.getArticleInfo()
+      article_info: this.getArticleInfo(),
+      menu: [
+        { name: 'title', text: '首页', url: '#' },
+        { name: 'list', text: '列表', url: '#/list' },
+        { name: 'new', text: '新建', url: '#/edit' },
+      ],
+      showEditMenu: true,
     }
   },
   computed: {
@@ -114,12 +125,19 @@ export default {
       }
       this.$data.article_info = this.getArticleInfo()
     }
+  },
+  components: {
+    'my-menu': Menu
   }
 };
 
 </script>
 
 <style>
+#editor_page {
+  height: 100%;
+}
+
 #editor>.markdown-input, #editor>.markdown-show {
   display: inline-block;
   width: 49%;

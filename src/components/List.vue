@@ -1,24 +1,42 @@
 <template>
- <div id="list">
-   <div v-for="(item, index) in items">
-     <a :href="'/#/article/' + item.id" >{{ item.title }}</a>
-     <span class="tool">
-       <a :href="'/#/edit/' + item.id" >编辑</a>|
-       <a :href="'/#/del/' + item.id" >删除</a>
-     </span>
-     <span class="datetime">{{item.created_at}}</span>
-   </div>
+  <div>
+    <my-menu :items="menu" :show-edit-menu="showEditMenu"></my-menu>
+    <div id="list">
+      <div v-for="(item, index) in items">
+        <a :href="'/#/article/' + item.id" >{{ item.title }}</a>
+        <span class="tool">
+          <a :href="'/#/edit/' + item.id" >编辑</a>|
+          <a :href="'/#/del/' + item.id" >删除</a>
+        </span>
+        <span class="datetime">{{item.created_at}}</span>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import Menu from './Menu.vue';
+
 export default {
-    name : 'list',
-    computed: {
-        items: function() {
-          return this.$store.state.article_list
-        }
+  name : 'list',
+  data() {
+    return {
+      menu: [
+        { name: 'title', text: '首页', url: '#' },
+        { name: 'list', text: '列表', url: '#/list' },
+        { name: 'new', text: '新建', url: '#/edit' },
+      ],
+      showEditMenu: false,
     }
+  },
+  computed: {
+    items: function() {
+      return this.$store.state.article_list
+    }
+  },
+  components: {
+    'my-menu': Menu
+  }
 }
 </script>
 

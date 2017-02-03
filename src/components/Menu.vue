@@ -25,14 +25,7 @@ let options = {
 
 export default {
   name: 'menu',
-  computed: {
-    items: function() {
-      return this.$store.state.menu;
-    },
-    showEditMenu: function() {
-      return this.$store.state.showEditMenu;
-    }
-  },
+  props: ['items', 'showEditMenu'],
   methods: {
     save: function() {
       let data = _.clone(this.$store.state.article);

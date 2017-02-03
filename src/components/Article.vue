@@ -1,7 +1,10 @@
 <template>
-  <div id="article">
-     <h1>{{title}}</h1>
-    <div class="markdown" v-html="compiledMarkdown"></div>
+  <div>
+    <my-menu :items="menu" :show-edit-menu="showEditMenu"></my-menu>
+    <div id="article">
+       <h1>{{title}}</h1>
+      <div class="markdown" v-html="compiledMarkdown"></div>
+    </div>
   </div>
 </template>
 
@@ -9,6 +12,8 @@
 import marked from 'marked';
 import _ from 'lodash';
 import highlight from 'highlight.js';
+
+import Menu from './Menu.vue';
 
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -29,7 +34,13 @@ export default {
   data() {
     return {
       content: this.$store.state.article['content'],
-      title: this.$store.state.article['title']
+      title: this.$store.state.article['title'],
+      menu: [
+        { name: 'title', text: '首页', url: '#' },
+        { name: 'list', text: '列表', url: '#/list' },
+        { name: 'new', text: '新建', url: '#/edit' },
+      ],
+      showEditMenu: false,
     }
   },
   computed: {
@@ -83,6 +94,9 @@ export default {
       this.$data.content = this.$store.state.article['content'];
       this.$data.title = this.$store.state.article['title'];
     }
+  },
+  components: {
+    'my-menu': Menu
   }
 };
 
