@@ -36,9 +36,9 @@ export default {
       content: this.$store.state.article['content'],
       title: this.$store.state.article['title'],
       menu: [
-        { name: 'title', text: '首页', url: '#' },
-        { name: 'list', text: '列表', url: '#/list' },
-        { name: 'new', text: '新建', url: '#/edit' },
+        { name: 'title', text: 'home', url: '#' },
+        { name: 'list', text: 'list', url: '#/list' },
+        { name: 'new', text: 'new', url: '#/edit' },
       ],
       showEditMenu: false,
     }

@@ -38,9 +38,9 @@ export default {
     return {
       article_info: this.getArticleInfo(),
       menu: [
-        { name: 'title', text: '首页', url: '#' },
-        { name: 'list', text: '列表', url: '#/list' },
-        { name: 'new', text: '新建', url: '#/edit' },
+        { name: 'title', text: 'home', url: '#' },
+        { name: 'list', text: 'list', url: '#/list' },
+        { name: 'new', text: 'new', url: '#/edit' },
       ],
       showEditMenu: true,
     }
@@ -136,6 +136,10 @@ export default {
 <style>
 #editor_page {
   height: 100%;
+}
+
+#editor {
+  background-color: rgb(246, 246, 239);
 }
 
 #editor>.markdown-input, #editor>.markdown-show {

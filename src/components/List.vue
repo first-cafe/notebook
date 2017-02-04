@@ -22,9 +22,9 @@ export default {
   data() {
     return {
       menu: [
-        { name: 'title', text: '首页', url: '#' },
-        { name: 'list', text: '列表', url: '#/list' },
-        { name: 'new', text: '新建', url: '#/edit' },
+        { name: 'title', text: 'home', url: '#' },
+        { name: 'list', text: 'list', url: '#/list' },
+        { name: 'new', text: 'new', url: '#/edit' },
       ],
       showEditMenu: false,
     }
@@ -64,13 +64,20 @@ a:active {
     margin-top: 20px;
 }
 
+#list div {
+    border-bottom: 1px dashed #000;
+    padding: 3px;
+}
+
 #list .datetime {
     float: right;
 }
 
+/*
 #list>div:nth-child(2n+1) {
     background-color: #eee;
 }
+*/
 
 #list .tool {
   float: right;

@@ -11,4 +11,8 @@ export default {
   name: 'app',
 };
 </script>
-<style></style>
+<style>
+#app {
+  background-color: rgb(246, 246, 239);
+}
+</style>

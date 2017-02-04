@@ -3,7 +3,7 @@ html, body, #app, #editor{
   height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   size: 14px;
-  line-height: 1.5;
+  line-height: 1.2;
   color: #333;
   background-color: #fff;
 }

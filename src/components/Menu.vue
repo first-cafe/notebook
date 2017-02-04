@@ -1,14 +1,15 @@
 <template>
 <div id="menu">
-<ul>
-  <li v-for="(item, index) in items">
-    <span v-if="index!==0">|</span>
-    <a :href="item.url">{{ item.text }}</a>
-  </li>
-  <li v-if="showEditMenu">
-    <a v-on:click='save'>保存</a>
-  </li>
-</ul>
+  <ul>
+    <li class="header">first cafe</li>
+    <li v-for="(item, index) in items">
+      <span v-if="index!==0">|</span>
+      <a :href="item.url">{{ item.text }}</a>
+    </li>
+    <li v-if="showEditMenu">
+      <a v-on:click='save'>save</a>
+    </li>
+  </ul>
 </div>
 </template>
 
@@ -40,8 +41,8 @@ export default {
 
 <style>
 #menu {
-  color: #fff;
-  background: #222;
+  color: #222;
+  background: #ff6600;
 }
 
 #menu ul {
@@ -54,9 +55,15 @@ export default {
   padding: 3px;
 }
 
-#menu a { color: #fff; text-decoration:none; }
-#menu a:link { color:#fff; }
-#menu a:visited { color:#fff; }
-#menu a:hover { color:#fff; text-decoration:none; }
-#menu a:active { color: #fff; }
+#menu a { color: #222; text-decoration:none; font-size: 10pt; cursor: pointer;}
+#menu a:link { color:#222; }
+#menu a:visited { color:#222; }
+#menu a:hover { color:#222; text-decoration:none;}
+#menu a:active { color: #222; }
+
+#menu .header {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+}
 </style>
