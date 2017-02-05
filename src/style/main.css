@@ -5,5 +5,5 @@ html, body, #app, #editor{
   size: 14px;
   line-height: 1.2;
   color: #333;
-  background-color: #fff;
+  background-color: rgb(246, 246, 239);
 }

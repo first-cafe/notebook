@@ -40,7 +40,7 @@ export default {
         { name: 'list', text: 'list', url: '#/list' },
         { name: 'new', text: 'new', url: '#/edit' },
       ],
-      showEditMenu: false,
+      showEditMenu: true,
     }
   },
   computed: {

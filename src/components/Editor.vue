@@ -1,6 +1,6 @@
 <template>
   <div id="editor_page">
-    <my-menu :items="menu" :show-edit-menu="showEditMenu"></my-menu>
+    <my-menu :items="menu" :show-save-menu= "showSaveMenu" :show-edit-menu="showEditMenu"></my-menu>
     <div id="editor">
       <div class="article_info">
         <input v-model="article_info" @input="updateArticleInfo "placeholder="[标题],[分类],[标签],[标签]...">
@@ -42,7 +42,7 @@ export default {
         { name: 'list', text: 'list', url: '#/list' },
         { name: 'new', text: 'new', url: '#/edit' },
       ],
-      showEditMenu: true,
+      showSaveMenu: true,
     }
   },
   computed: {

@@ -6,8 +6,11 @@
       <span v-if="index!==0">|</span>
       <a :href="item.url">{{ item.text }}</a>
     </li>
-    <li v-if="showEditMenu">
+    <li class="tool" v-if="showSaveMenu">
       <a v-on:click='save'>save</a>
+    </li>
+    <li class="tool" v-if="showEditMenu">
+      <a :href='editUrl'>edit</a>
     </li>
   </ul>
 </div>
@@ -26,7 +29,12 @@ let options = {
 
 export default {
   name: 'menu',
-  props: ['items', 'showEditMenu'],
+  props: ['items', 'showSaveMenu', 'showEditMenu'],
+  data() {
+    return {
+      editUrl: '/#/edit/' + this.$route.params.id
+    }
+  },
   methods: {
     save: function() {
       let data = _.clone(this.$store.state.article);
@@ -66,4 +74,11 @@ export default {
   font-size: 10pt;
   font-weight: bold;
 }
+
+#menu .tool {
+  float: right;
+  display: inline-block;
+  margin-right: 10px;
+}
+
 </style>

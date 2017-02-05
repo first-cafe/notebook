@@ -5,8 +5,8 @@
       <div v-for="(item, index) in items">
         <a :href="'/#/article/' + item.id" >{{ item.title }}</a>
         <span class="tool">
-          <a :href="'/#/edit/' + item.id" >编辑</a>|
-          <a :href="'/#/del/' + item.id" >删除</a>
+          <a :href="'/#/edit/' + item.id" >edit</a> |
+          <a :href="'/#/del/' + item.id" >del</a>
         </span>
         <span class="datetime">{{item.created_at}}</span>
       </div>
@@ -65,7 +65,7 @@ a:active {
 }
 
 #list div {
-    border-bottom: 1px dashed #000;
+    border-bottom: 1px dashed #9a9a9a;
     padding: 3px;
 }
 
