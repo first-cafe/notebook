@@ -10,7 +10,7 @@
       <a v-on:click='save'>save</a>
     </li>
     <li class="tool" v-if="showEditMenu">
-      <a :href='editUrl'>edit</a>
+      <a :href="'/#/edit/' + $route.params.id">edit</a>
     </li>
   </ul>
 </div>
@@ -30,11 +30,6 @@ let options = {
 export default {
   name: 'menu',
   props: ['items', 'showSaveMenu', 'showEditMenu'],
-  data() {
-    return {
-      editUrl: '/#/edit/' + this.$route.params.id
-    }
-  },
   methods: {
     save: function() {
       let data = _.clone(this.$store.state.article);

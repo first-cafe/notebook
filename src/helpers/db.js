@@ -96,6 +96,14 @@ let db = {
 
     return defer.promise;
   },
+
+  del: function (options, id) {
+    this.getDb(options).removeItem(id).then(function () {
+      console.log(id + ' is cleared!');
+    }).catch(function (err) {
+      console.log(err);
+    });
+  },
 };
 
 export default db;

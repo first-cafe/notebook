@@ -6,7 +6,7 @@
         <a :href="'/#/article/' + item.id" >{{ item.title }}</a>
         <span class="tool">
           <a :href="'/#/edit/' + item.id" >edit</a> |
-          <a :href="'/#/del/' + item.id" >del</a>
+          <a v-on:click="del(item.id)" >del</a>
         </span>
         <span class="datetime">{{item.created_at}}</span>
       </div>
@@ -16,6 +16,13 @@
 
 <script>
 import Menu from './Menu.vue';
+import localForage from 'localforage';
+import db from '../helpers/db';
+
+let options = {
+  profile: 'first-cafe',
+  storeName: 'notebook',
+};
 
 export default {
   name : 'list',
@@ -27,6 +34,11 @@ export default {
         { name: 'new', text: 'new', url: '#/edit' },
       ],
       showEditMenu: false,
+    }
+  },
+  methods: {
+    del: function(id) {
+      db.del(options, id);
     }
   },
   computed: {
