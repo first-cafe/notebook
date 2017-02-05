@@ -53,6 +53,9 @@ export default {
 </script>
 
 <style>
+a {
+  cursor: pointer;
+}
 a:link {
     color:#000000;
     text-decoration:none;
