@@ -3,6 +3,7 @@ var webpack = require('webpack');
 var HTMLPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  devtool: 'source-map',
   resolve: {
     root: path.resolve('./src'),
     extensions: ['', '.js'],
@@ -16,7 +17,7 @@ module.exports = {
   output: {
     path:  path.join(__dirname, 'dist'),
     publicPath: '/static/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     loaders: [
