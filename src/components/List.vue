@@ -29,9 +29,9 @@ export default {
   data() {
     return {
       menu: [
-        { name: 'title', text: 'home', url: '#' },
         { name: 'list', text: 'list', url: '#/list' },
         { name: 'new', text: 'new', url: '#/edit' },
+        { name: 'setting', text: 'setting', url: '#/setting' },
       ],
       showEditMenu: false,
     }
